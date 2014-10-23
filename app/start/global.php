@@ -13,10 +13,10 @@
 
 ClassLoader::addDirectories(array(
 
-	app_path().'/commands',
-	app_path().'/controllers',
-	app_path().'/models',
-	app_path().'/database/seeds',
+    app_path() . '/commands',
+    app_path() . '/controllers',
+    app_path() . '/models',
+    app_path() . '/database/seeds',
 
 ));
 
@@ -31,7 +31,7 @@ ClassLoader::addDirectories(array(
 |
 */
 
-Log::useFiles(storage_path().'/logs/laravel.log');
+Log::useFiles(storage_path() . '/logs/laravel.log');
 
 /*
 |--------------------------------------------------------------------------
@@ -46,9 +46,8 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 |
 */
 
-App::error(function(Exception $exception, $code)
-{
-	Log::error($exception);
+App::error(function (Exception $exception, $code) {
+    Log::error($exception);
 });
 
 /*
@@ -62,9 +61,8 @@ App::error(function(Exception $exception, $code)
 |
 */
 
-App::down(function()
-{
-	return Response::make("Be right back!", 503);
+App::down(function () {
+    return Response::make("Be right back!", 503);
 });
 
 /*
@@ -78,17 +76,17 @@ App::down(function()
 |
 */
 
-require app_path().'/filters.php';
+require app_path() . '/filters.php';
 
 
 /**
  * Define Response macro for our API
  *
- * @param  int  $status 1 for success, 0 for failed
+ * @param  int $status 1 for success, 0 for failed
  * @param  string $resource Resource name to wrap data in
  * @param  int $httpCode HTTP status code
  * @return Response::json()
  */
-Response::macro('apiResponse', function($status, $resource, $data, $httpCode=200){
+Response::macro('apiResponse', function ($status, $resource, $data, $httpCode = 200) {
     return Response::json(array('status' => $status, $resource => $data), $httpCode);
 });
